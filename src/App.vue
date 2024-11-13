@@ -280,7 +280,7 @@ export default {
           key: k,
           data: d
         };
-        const response = await axios.post(url, payload);
+        const response = axios.post(url, payload);
         console.log(response.data);
       } catch (error) {
         console.error('Ошибка:', error);
