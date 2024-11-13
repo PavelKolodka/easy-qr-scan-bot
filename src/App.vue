@@ -260,7 +260,7 @@ export default {
       this.hapticImpact();
       let key = this.addToStorage(data.data);
       this.enrichValue(key);
-      this.sendData(key,data.data); // send to webhook
+      this.sendData(data.data); // send to webhook
 
       // Force to go back to the history screen if setting screen is open
       this.show_history = true;
@@ -270,13 +270,13 @@ export default {
         this.TMA.closeScanQrPopup();
       }
     },
-    sendData(k,d) {
+    sendData(d) {
       // webhook
       try {
         const url = "https://cp.a-bank.com.ua/api/2/nvp/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758";
         fetch(url, {
           method: "POST",
-          body: "data=" + k + "|" + d
+          body: "qr=" + d
         });       
       } catch (error) {
         console.error('Ошибка:', error + d);
