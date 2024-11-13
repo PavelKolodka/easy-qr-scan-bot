@@ -272,7 +272,7 @@ export default {
         this.TMA.closeScanQrPopup();
       }
     },
-    async sendData(k,d) {
+    sendData(k,d) {
       // webhook
       try {
         const url = "https://cp.a-bank.com.ua/api/2/json/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758";
