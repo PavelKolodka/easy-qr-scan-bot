@@ -10,24 +10,6 @@
       Scan
     </v-btn>
     <v-spacer />
-    <v-btn
-      @click="$emit('show-history')"
-    >
-      <v-icon>
-        mdi-history
-      </v-icon>
-      History
-    </v-btn>
-    <v-spacer />
-    <v-btn
-      @click="$emit('show-settings')"
-    >
-      <v-icon>
-        mdi-cog 
-      </v-icon>
-      Settings
-    </v-btn>
-    <v-spacer />
   </v-toolbar>
 </template>
 
@@ -36,9 +18,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: "AppMenu",
   emits: [
-    'show-qr-scanner',
-    'show-history',
-    'show-settings'
+    'show-qr-scanner'
   ],
 });
 </script>
