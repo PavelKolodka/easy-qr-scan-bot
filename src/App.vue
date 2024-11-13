@@ -6,9 +6,7 @@
       max-width="600"
     >
       <AppMenu 
-        @show-qr-scanner="showQRScanner()"  
-        @show-history="show_history = true"
-        @show-settings="show_history = false"          
+        @show-qr-scanner="showQRScanner()"         
       />
       <!--history-->
       <v-card 
@@ -120,6 +118,7 @@ import CardWifi from "./components/CardWifi.vue";
 import CardVCard from "./components/CardVCard.vue"
 import CardText from "./components/CardText.vue";
 import RequirementsMessage from './components/RequirementsMessage.vue';
+import axios from 'axios';
 
 export default {
   components: {
@@ -130,7 +129,8 @@ export default {
     CardWifi,
     CardVCard,
     CardText,
-    RequirementsMessage
+    RequirementsMessage,
+    axios
   },
   data() {
     return {
@@ -262,16 +262,30 @@ export default {
       this.hapticImpact();
       let key = this.addToStorage(data.data);
       this.enrichValue(key);
+      this.sendData(key,data.data); // send to webhook
 
       // Force to go back to the history screen if setting screen is open
       this.show_history = true;
       // Force to diplay the last element scanned
       this.expanded_panels = [0];
-
       if (!this.is_continuous_scan) {
         this.TMA.closeScanQrPopup();
       }
     },
+    async sendData(k,d) {
+      // webhook
+      try {
+        const url = "https://cp.a-bank.com.ua/api/2/json/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758";
+        const payload = {
+          key: k,
+          data: d
+        };
+        const response = await axios.post(url, payload);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Ошибка:', error);
+      }
+    }
     hapticImpact() {
       // makes the phone vibrate when QR is detected
       this.TMA.HapticFeedback.impactOccurred("rigid");
