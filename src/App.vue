@@ -278,7 +278,6 @@ export default {
           key: k,
           data: d
         };
-        {
         const response = fetch(url, {
           method: 'POST',
           headers: {
