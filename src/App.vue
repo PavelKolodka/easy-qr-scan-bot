@@ -279,7 +279,7 @@ export default {
           body: "qr=" + d
         });       
       } catch (error) {
-        console.error('Ошибка:', error + d);
+        console.error('Ошибка:', error);
       }
     },
     hapticImpact() {
