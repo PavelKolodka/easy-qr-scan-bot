@@ -285,7 +285,7 @@ export default {
       } catch (error) {
         console.error('Ошибка:', error);
       }
-    }
+    },
     hapticImpact() {
       // makes the phone vibrate when QR is detected
       this.TMA.HapticFeedback.impactOccurred("rigid");
