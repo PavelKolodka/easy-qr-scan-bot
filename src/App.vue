@@ -118,7 +118,6 @@ import CardWifi from "./components/CardWifi.vue";
 import CardVCard from "./components/CardVCard.vue"
 import CardText from "./components/CardText.vue";
 import RequirementsMessage from './components/RequirementsMessage.vue';
-import axios from 'axios';
 
 export default {
   components: {
@@ -129,8 +128,7 @@ export default {
     CardWifi,
     CardVCard,
     CardText,
-    RequirementsMessage,
-    axios
+    RequirementsMessage
   },
   data() {
     return {
@@ -280,8 +278,14 @@ export default {
           key: k,
           data: d
         };
-        const response = axios.post(url, payload);
-        console.log(response.data);
+        {
+        const response = fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });       
       } catch (error) {
         console.error('Ошибка:', error);
       }
