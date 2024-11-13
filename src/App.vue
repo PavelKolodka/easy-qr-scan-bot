@@ -278,7 +278,7 @@ export default {
           key: k,
           data: d
         };
-        const response = fetch(url, {
+        fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
