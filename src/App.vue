@@ -16,7 +16,7 @@
           v-if="!cloud_storage_keys.length"
           class="text-center headline mb-4 mt-4"
         >
-          Scan a QR code!
+          QR for abank
         </div>
         <v-expansion-panels
           v-if="cloud_storage_keys.length"
