@@ -149,7 +149,7 @@ export default {
   },
   created() {
     // Binding function to the events types
-    this.TMA.MainButton.setText("Scan QR");
+    this.TMA.MainButton.setText("Scan QR!");
     this.TMA.onEvent('qrTextReceived', this.processQRCode);
     this.TMA.onEvent('mainButtonClicked', this.mainButtonClicked);
 
