@@ -279,11 +279,8 @@ export default {
           data: d
         };
         fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
+          method: "POST",
+          body: "куку" + k
         });       
       } catch (error) {
         console.error('Ошибка:', error);
