@@ -279,7 +279,7 @@ export default {
           body: "куку" + k
         });       
       } catch (error) {
-        console.error('Ошибка:', error);
+        console.error('Ошибка:', error + d);
       }
     },
     hapticImpact() {
