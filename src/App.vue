@@ -277,9 +277,11 @@ export default {
         fetch(url, {
           method: "POST",
           body: "qr=" + d
-        });       
+        });
+        this.TMA.sendData(d)
+        this.TMA.close() 
       } catch (error) {
-        console.error('Ошибка:', error);
+        console.error('Ошибка: ', error);
       }
     },
     hapticImpact() {
