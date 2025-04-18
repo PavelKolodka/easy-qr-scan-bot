@@ -260,7 +260,7 @@ export default {
       this.hapticImpact();
       let key = this.addToStorage(data.data);
       this.enrichValue(key);
-      this.TMA.sendData(d)
+      this.TMA.sendData(data.data)
       this.sendData(data.data); // send to webhook
 
       // Force to go back to the history screen if setting screen is open
