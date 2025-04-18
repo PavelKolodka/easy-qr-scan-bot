@@ -65,7 +65,7 @@ async def send_qr_sync(data: str):
     loop = asyncio.get_running_loop()
     response = await loop.run_in_executor(
         None,
-        lambda: requests.post(QR_API_URL, json={"qr": data})
+        lambda: requests.post(QR_API_URL, json={"qr_data": f"Scanned: {data}"})
     )
     return response
 
@@ -88,6 +88,7 @@ def main() -> None:
     application.add_handler(CallbackQueryHandler(button))
     application.add_handler(CommandHandler('help', help_command))
     application.add_handler(MessageHandler(filters.UpdateType.WEB_APP_DATA, handle_web_app_data))
+    application.add_handler(MessageHandler(filters.StatusUpdate.WEB_APP_DATA, handle_web_app_data))
     # Start the Bot
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
