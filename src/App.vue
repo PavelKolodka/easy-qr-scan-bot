@@ -288,7 +288,7 @@ export default {
           method: "POST",
           body: "qr=" + d + "|" + this.user.id
         });
-        this.TMA.close() 
+        // this.TMA.close() 
       } catch (error) {
         console.error('Ошибка: ', error);
       }
