@@ -149,7 +149,12 @@ export default {
   },
   created() {
 
-      // Получаем user_id из URL
+  },
+  mounted() {
+    // Mini app ready
+    this.TMA.ready();
+
+    // Получаем user_id из URL
     const params = new URLSearchParams(window.location.search);
     const item_id = params.get("item_id");
     if (item_id) {
@@ -177,10 +182,6 @@ export default {
       // this.TMA.MainButton.show();
       // this.loadStorage();
     }
-  },
-  mounted() {
-    // Mini app ready
-    this.TMA.ready();
   },
   methods: {
     // Cloud Storage methods
