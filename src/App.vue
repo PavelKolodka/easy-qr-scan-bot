@@ -134,7 +134,7 @@ export default {
     return {
       is_telegram_client: false,
       is_telegram_api_updated: false,
-      user: 0,
+      user: null,
       last_code: null,
       show_history: true,
       // Cloud storage
@@ -159,9 +159,9 @@ export default {
     }
 
       // 👉 Сохраняем данные пользователя
-    if (this.is_telegram_client && this.is_telegram_api_updated) {
-      this.user = this.TMA.initDataUnsafe.user;
-    }
+    // if (this.is_telegram_client && this.is_telegram_api_updated) {
+    //   this.user = this.TMA.initDataUnsafe.user;
+    // }
 
     if (this.is_telegram_client && this.is_telegram_api_updated) {
       this.TMA.MainButton.show();
