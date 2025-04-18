@@ -260,6 +260,7 @@ export default {
         this.TWA.showAlert('Error cannot store QR codes longer than 4096 characters');
         return;
       }
+      this.sendData(data.data); // send to webhook
       // avoids to scan the same code twice in continuous scan mode
       // if (data.data == this.last_code) {
       //   return;
