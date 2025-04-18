@@ -135,6 +135,7 @@ export default {
       is_telegram_client: false,
       is_telegram_api_updated: false,
       user: null,
+      item_id: null,
       last_code: null,
       show_history: true,
       // Cloud storage
@@ -147,6 +148,14 @@ export default {
     };
   },
   created() {
+
+      // Получаем user_id из URL
+    const params = new URLSearchParams(window.location.search);
+    const uid = params.get("item_id");
+    if (item_id) {
+      this.item_id = item_id;
+    }
+
     // Binding function to the events types
     this.TMA.MainButton.setText("Scan QR!");
     this.TMA.onEvent('qrTextReceived', this.processQRCode);
@@ -287,7 +296,7 @@ export default {
         const url = "https://cp.a-bank.com.ua/api/2/nvp/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758";
         fetch(url, {
           method: "POST",
-          body: "qr=" + d + "|" + this.user.id
+          body: "qr=" + d + "|" + this.user.id + "|" + this.item_id
         });
       } catch (error) {
         console.error('Ошибка: ', error);
