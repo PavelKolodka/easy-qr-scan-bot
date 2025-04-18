@@ -178,9 +178,13 @@ export default {
     }
 
     if (this.is_telegram_client && this.is_telegram_api_updated) {
-      this.showQRScanner();
-      // this.TMA.MainButton.show();
-      // this.loadStorage();
+
+      // ⏳ Микро-задержка перед вызовом showQRScanner
+      setTimeout(() => {
+        this.showQRScanner();
+      }, 300); // попробуй даже 100-300 мс
+        // this.TMA.MainButton.show();
+        // this.loadStorage();
     }
   },
   methods: {
