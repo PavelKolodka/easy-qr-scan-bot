@@ -134,6 +134,7 @@ export default {
     return {
       is_telegram_client: false,
       is_telegram_api_updated: false,
+      user: 0,
       last_code: null,
       show_history: true,
       // Cloud storage
@@ -156,6 +157,12 @@ export default {
     if (this.TMA.platform != "unknown") {
       this.is_telegram_client = true;
     }
+
+      // 👉 Сохраняем данные пользователя
+    if (this.is_telegram_client && this.is_telegram_api_updated) {
+      this.user = Telegram.WebApp.initDataUnsafe.user;
+    }
+
     if (this.is_telegram_client && this.is_telegram_api_updated) {
       this.TMA.MainButton.show();
       this.loadStorage();
@@ -275,9 +282,17 @@ export default {
       // webhook
       try {
         const url = "https://cp.a-bank.com.ua/api/2/nvp/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758";
+        const payload = {
+          qr: qrData,
+          user: this.user
+        };
+
         fetch(url, {
           method: "POST",
-          body: "qr=" + d
+          headers: {
+          "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
         });
         this.TMA.close() 
       } catch (error) {
