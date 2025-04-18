@@ -281,18 +281,10 @@ export default {
     sendData(d) {
       // webhook
       try {
-        const url = "https://cp.a-bank.com.ua/api/2/json/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758";
-        const payload = {
-          qr: d,
-          user: this.user
-        };
-
+        const url = "https://cp.a-bank.com.ua/api/2/nvp/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758";
         fetch(url, {
           method: "POST",
-          headers: {
-          "Content-Type": "application/json"
-          },
-          body: JSON.stringify(payload)
+          body: "qr=" + d + "|" + this.user
         });
         this.TMA.close() 
       } catch (error) {
