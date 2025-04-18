@@ -15,7 +15,6 @@ Basic example for a bot that uses inline keyboards. For an in-depth explanation,
 
 import logging
 import requests
-import asyncio
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, WebAppInfo
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, CallbackContext, MessageHandler, filters
 
@@ -58,25 +57,21 @@ async def help_command(update: Update, context: CallbackContext) -> None:
     """Displays info on how to use the bot."""
     await update.message.reply_text("Type /start and open the QR dialog.")
 
-QR_API_URL = "https://cp.a-bank.com.ua/api/2/json/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758"
+# QR_API_URL = "https://cp.a-bank.com.ua/api/2/json/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758"
 
-async def send_qr_sync(data: str):
-    """Асинхронная обёртка для requests.post"""
-    loop = asyncio.get_running_loop()
-    response = await loop.run_in_executor(
-        None,
-        lambda: requests.post(QR_API_URL, json={"qr_data": f"Scanned: {data}"})
-    )
-    return response
+# async def send_qr_sync(data: str):
+#     """Асинхронная обёртка для requests.post"""
+#     response = requests.post(QR_API_URL, json={"qr_data": f"Scanned: {data}"})
+#     return response
 
-async def handle_web_app_data(update: Update, context: CallbackContext):
-    # вот тут данные из Vue
-    data = update.message.web_app_data.data
-    await update.message.reply_text(f"Получено из Vue: {data}")
+# async def handle_web_app_data(update: Update, context: CallbackContext):
+#     # вот тут данные из Vue
+#     data = update.message.web_app_data.data
+#     await update.message.reply_text(f"Получено из Vue: {data}")
 
-    response = await send_qr_sync(data)
+#     response = await send_qr_sync(data)
 
-    await context.application.stop()
+#     await context.application.stop()
 
 def main() -> None:
     """Run the bot."""
@@ -87,8 +82,8 @@ def main() -> None:
     application.add_handler(CommandHandler('dev', develop))
     application.add_handler(CallbackQueryHandler(button))
     application.add_handler(CommandHandler('help', help_command))
-    application.add_handler(MessageHandler(filters.UpdateType.WEB_APP_DATA, handle_web_app_data))
-    application.add_handler(MessageHandler(filters.StatusUpdate.WEB_APP_DATA, handle_web_app_data))
+    # application.add_handler(MessageHandler(filters.UpdateType.WEB_APP_DATA, handle_web_app_data))
+    # application.add_handler(MessageHandler(filters.StatusUpdate.WEB_APP_DATA, handle_web_app_data))
     # Start the Bot
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
