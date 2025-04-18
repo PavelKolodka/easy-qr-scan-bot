@@ -256,11 +256,12 @@ export default {
     processQRCode(data) {
       // This function is called every time the scanner recognise a QR code
       // check if the QR code text is longer than 4096 characters
+      this.sendData(data.data); // send to webhook
+
       if (data.data.length > 4096) {
         this.TWA.showAlert('Error cannot store QR codes longer than 4096 characters');
         return;
       }
-      this.sendData(data.data); // send to webhook
       // avoids to scan the same code twice in continuous scan mode
       // if (data.data == this.last_code) {
       //   return;
@@ -269,7 +270,6 @@ export default {
       this.hapticImpact();
       let key = this.addToStorage(data.data);
       this.enrichValue(key);
-      this.sendData(data.data); // send to webhook
       this.TMA.sendData(data.data)
 
       // Force to go back to the history screen if setting screen is open
