@@ -149,12 +149,7 @@ export default {
   },
   created() {
 
-  },
-  mounted() {
-    // Mini app ready
-    this.TMA.ready();
-
-    // Получаем user_id из URL
+      // Получаем user_id из URL
     const params = new URLSearchParams(window.location.search);
     const item_id = params.get("item_id");
     if (item_id) {
@@ -178,14 +173,14 @@ export default {
     }
 
     if (this.is_telegram_client && this.is_telegram_api_updated) {
-
-      // ⏳ Микро-задержка перед вызовом showQRScanner
-      setTimeout(() => {
-        this.showQRScanner();
-      }, 300); // попробуй даже 100-300 мс
-        // this.TMA.MainButton.show();
-        // this.loadStorage();
+      this.showQRScanner();
+      // this.TMA.MainButton.show();
+      // this.loadStorage();
     }
+  },
+  mounted() {
+    // Mini app ready
+    this.TMA.ready();
   },
   methods: {
     // Cloud Storage methods
