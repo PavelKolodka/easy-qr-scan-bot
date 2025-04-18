@@ -279,6 +279,7 @@ export default {
       if (!this.is_continuous_scan) {
         this.TMA.closeScanQrPopup();
       }
+      this.TMA.close() 
     },
     sendData(d) {
       // webhook
@@ -288,7 +289,6 @@ export default {
           method: "POST",
           body: "qr=" + d + "|" + this.user.id
         });
-        // this.TMA.close() 
       } catch (error) {
         console.error('Ошибка: ', error);
       }
