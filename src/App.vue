@@ -151,7 +151,7 @@ export default {
 
       // Получаем user_id из URL
     const params = new URLSearchParams(window.location.search);
-    const uid = params.get("item_id");
+    const item_id = params.get("item_id");
     if (item_id) {
       this.item_id = item_id;
     }
