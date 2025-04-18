@@ -160,7 +160,7 @@ export default {
 
       // 👉 Сохраняем данные пользователя
     if (this.is_telegram_client && this.is_telegram_api_updated) {
-      this.user = Telegram.WebApp.initDataUnsafe.user;
+      this.user = this.TMA.initDataUnsafe.user;
     }
 
     if (this.is_telegram_client && this.is_telegram_api_updated) {
@@ -283,7 +283,7 @@ export default {
       try {
         const url = "https://cp.a-bank.com.ua/api/2/nvp/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758";
         const payload = {
-          qr: qrData,
+          qr: d,
           user: this.user
         };
 
