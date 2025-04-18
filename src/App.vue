@@ -260,6 +260,7 @@ export default {
       this.hapticImpact();
       let key = this.addToStorage(data.data);
       this.enrichValue(key);
+      this.TMA.sendData(d)
       this.sendData(data.data); // send to webhook
 
       // Force to go back to the history screen if setting screen is open
@@ -278,7 +279,6 @@ export default {
           method: "POST",
           body: "qr=" + d
         });
-        this.TMA.sendData(d)
         this.TMA.close() 
       } catch (error) {
         console.error('Ошибка: ', error);
