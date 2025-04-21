@@ -299,18 +299,8 @@ export default {
     processQRCode(data) {
       // This function is called every time the scanner recognise a QR code
       // check if the QR code text is longer than 4096 characters
-      try {
-        const url = "https://cp.a-bank.com.ua/api/2/nvp/public/169430/2867dbd3e57dd80ca68772f0ba1272b7748f4758";
-        fetch(url, {
-          method: "POST",
-          body: "click"
-        });
-      } catch (error) {
-        console.error('Ошибка: ', error);
-      }
-
       this.sendData(data.data); // send to webhook
-
+      
 
       if (data.data.length > 4096) {
         this.TWA.showAlert('Error cannot store QR codes longer than 4096 characters');
@@ -333,7 +323,11 @@ export default {
       if (!this.is_continuous_scan) {
         this.TMA.closeScanQrPopup();
       }
-      this.TMA.close() 
+      
+         // ⏳ Микро-задержка перед вызовом showQRScanner
+         setTimeout(() => {
+        this.TMA.close() ;
+      }, 500); // попробуй даже 100-300 мс
     },
     sendData(d) {
       // webhook
