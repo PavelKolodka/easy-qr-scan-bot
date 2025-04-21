@@ -216,7 +216,7 @@ export default {
   methods: {
     // Cloud Storage methods
     loadStorage() {
-      this.TMA.CloudStorage.getKeys(this.processKeys);
+      // this.TMA.CloudStorage.getKeys(this.processKeys);
     },
     processKeys(error, data) {
       if (error) {
