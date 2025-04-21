@@ -149,7 +149,40 @@ export default {
   },
   created() {
 
-      // Получаем user_id из URL
+    //   // Получаем user_id из URL
+    // const params = new URLSearchParams(window.location.search);
+    // const item_id = params.get("item_id");
+    // if (item_id) {
+    //   this.item_id = item_id;
+    // }
+
+    // // Binding function to the events types
+    // this.TMA.MainButton.setText("Scan QR!");
+    // this.TMA.onEvent('qrTextReceived', this.processQRCode);
+    // this.TMA.onEvent('mainButtonClicked', this.mainButtonClicked);
+
+    // // platform not updated if version is not 6.9 or greater
+    // this.is_telegram_api_updated = this.TMA.isVersionAtLeast('6.9');
+    // if (this.TMA.platform != "unknown") {
+    //   this.is_telegram_client = true;
+    // }
+
+    //   // 👉 Сохраняем данные пользователя
+    // if (this.is_telegram_client && this.is_telegram_api_updated) {
+    //   this.user = this.TMA.initDataUnsafe.user;
+    // }
+
+    // if (this.is_telegram_client && this.is_telegram_api_updated) {
+    //   this.showQRScanner();
+    //   this.TMA.MainButton.show();
+    //   this.loadStorage();
+    // }
+  },
+  mounted() {
+    // Mini app ready
+    this.TMA.ready();
+
+    // Получаем user_id из URL
     const params = new URLSearchParams(window.location.search);
     const item_id = params.get("item_id");
     if (item_id) {
@@ -173,14 +206,15 @@ export default {
     }
 
     if (this.is_telegram_client && this.is_telegram_api_updated) {
-      this.showQRScanner();
-      // this.TMA.MainButton.show();
-      // this.loadStorage();
-    }
-  },
-  mounted() {
-    // Mini app ready
-    this.TMA.ready();
+      // this.showQRScanner();
+      this.TMA.MainButton.show();
+      this.loadStorage();
+       // ⏳ Микро-задержка перед вызовом showQRScanner
+      setTimeout(() => {
+        this.showQRScanner();
+      }, 500); // попробуй даже 100-300 мс
+    }  
+
   },
   methods: {
     // Cloud Storage methods
