@@ -209,10 +209,7 @@ export default {
       // this.showQRScanner();
       this.TMA.MainButton.show();
       this.loadStorage();
-       // ⏳ Микро-задержка перед вызовом showQRScanner
-      setTimeout(() => {
-        this.showQRScanner();
-      }, 500); // попробуй даже 100-300 мс
+      this.showQRScanner();
     }  
 
   },
@@ -317,7 +314,7 @@ export default {
       this.TMA.sendData(data.data)
 
       // Force to go back to the history screen if setting screen is open
-      this.show_history = true;
+      this.show_history = false;
       // Force to diplay the last element scanned
       this.expanded_panels = [0];
       if (!this.is_continuous_scan) {
