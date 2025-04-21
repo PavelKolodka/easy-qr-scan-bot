@@ -321,7 +321,8 @@ export default {
       if (!this.is_continuous_scan) {
         this.TMA.closeScanQrPopup();
       }
-
+      // close APP
+      this.closeTMA();
       
         
     },
