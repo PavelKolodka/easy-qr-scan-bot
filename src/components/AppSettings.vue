@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-list
+    <!-- <v-list
       lines="one" 
     >
       <v-list-subheader inset>
@@ -72,7 +72,7 @@
           />
         </template>
       </v-list-item>
-    </v-list>
+    </v-list> -->
     <div
       v-if="show_debug"
     >
