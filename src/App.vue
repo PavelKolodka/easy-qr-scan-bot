@@ -193,6 +193,7 @@ export default {
     this.TMA.MainButton.setText("Scan QR!");
     this.TMA.onEvent('qrTextReceived', this.processQRCode);
     this.TMA.onEvent('mainButtonClicked', this.mainButtonClicked);
+    this.TMA.onEvent('scanQrPopupClosed', this.closeTMA);
 
     // platform not updated if version is not 6.9 or greater
     this.is_telegram_api_updated = this.TMA.isVersionAtLeast('6.9');
@@ -320,9 +321,13 @@ export default {
       if (!this.is_continuous_scan) {
         this.TMA.closeScanQrPopup();
       }
+
       
-         // ⏳ Микро-задержка перед вызовом showQRScanner
-         setTimeout(() => {
+        
+    },
+    closeTMA() {
+       // ⏳ Микро-задержка перед вызовом showQRScanner
+       setTimeout(() => {
         this.TMA.close() ;
       }, 500); // попробуй даже 100-300 мс
     },
